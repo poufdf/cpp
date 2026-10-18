@@ -17,6 +17,7 @@ public:
 		 _capacity = n;
 	}
 	//析构函数
+
 	~Stack()
 	{
 		cout << "~Stack被调用";
