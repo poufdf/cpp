@@ -2,6 +2,7 @@
 #include<stdlib.h>
 using namespace std;
 //’ª¿‡
+
 class Stack
 {
 public:
