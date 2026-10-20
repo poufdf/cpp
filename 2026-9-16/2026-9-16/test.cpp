@@ -23,7 +23,6 @@ private:
 int A::_count = 0;
 
 
-
 class Date
 {
 public:
