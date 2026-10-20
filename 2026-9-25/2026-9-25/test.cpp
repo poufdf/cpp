@@ -5,6 +5,7 @@ using namespace std;
 
 void Test1()
 {
+
 	string s1;
 	string s2("Hello World!");
 	cout << s2 << endl;
