@@ -42,6 +42,7 @@ private:
 	int _top;
 	int _capacity;
 };
+
 //class Date
 //{
 //public:
