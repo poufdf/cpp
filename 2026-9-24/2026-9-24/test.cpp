@@ -29,7 +29,6 @@ namespace zcq
 	int rand = 0;
 }
 
-
 int main()
 {
 	//这里编译器会去找rand,由于rand变量被命名空间保护起来了，因此这里访问到的是stdlib.h头文件里的rand函数
