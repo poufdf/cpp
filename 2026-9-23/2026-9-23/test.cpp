@@ -7,6 +7,7 @@ int main()
 	printf("%d", rand);//error C2365: “rand”: 重定义；以前的定义是“函数”
 	return 0;
 }
+
 ////C++实现
 //#include<iostream>
 //using namespace std;
