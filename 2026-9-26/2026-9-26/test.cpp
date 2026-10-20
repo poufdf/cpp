@@ -17,6 +17,7 @@ void Test1()
 	s1.reserve(100);
 	cout << s1.capacity() << endl;//可能大于100
 }
+
 void Test2()
 {
 	string s2("654321");
