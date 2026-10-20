@@ -50,7 +50,6 @@ struct list_iterator
 template<class T>
 class list
 {
-	
 public:
 	typedef list_node<T> Node;
 	typedef list_iterator<T> iterator;
