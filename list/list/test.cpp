@@ -28,7 +28,6 @@ void Test1()
 	cout << endl;
 }
 
-
 int main()
 {
 	Test1();
