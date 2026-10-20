@@ -5,6 +5,7 @@ using namespace std;
 
 void Test1()
 {
+	
 	vector<int> v2(10, 1);
 	vector<int> v1(v2);
 	vector<int> v3;
