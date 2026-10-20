@@ -29,7 +29,6 @@ void Test2()
 	//s2.insert(0, "AA");
 	//s1.erase(0);
 	//s1.erase(2, 1);
-	//s2.erase(1);
 	cout << s1.find("llo")<<endl;
 	cout << s1.find("Wor")<<endl;
 	cout << s2.find("stin")<<endl;
