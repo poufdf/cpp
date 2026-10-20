@@ -119,7 +119,6 @@ void Test6()
 	cout << "s1.capacity = " << s1.capacity() << ' ' << "s2.capacity = " << s2.capacity() << endl;
 
 }
-
 void Test7()
 {
 	string s1("Hello World");
