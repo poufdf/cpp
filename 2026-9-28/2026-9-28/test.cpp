@@ -5,6 +5,7 @@ using namespace std;//日常练习为了方便，直接展开使用
 
 int main()
 {
+	
 	int  a = 0;
 	//scanf("%d", &a);
 	//printf("%d", a);//需要指定格式
