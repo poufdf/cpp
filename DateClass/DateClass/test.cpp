@@ -39,7 +39,6 @@
  void Test4()
  {
 	 Date d1(2026, 9, 13);
-	// cout << d1;
 	 cin >> d1;
 	 cout << d1;
  }
