@@ -125,7 +125,6 @@ void Test3()
 	list<int> l2 (5,6);
 	//l1.swap(l2);
 	//l1.resize(5);
-	//l1.clear();
 	for (auto& x : l1)
 	{
 		cout << x << ' ';
