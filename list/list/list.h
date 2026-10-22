@@ -39,11 +39,18 @@ namespace zcq
 		{
 			return &(_node->val);
 		}
-
+		//前置++
 		list_iterator<T,Ref>& operator++()
 		{
 			_node = _node->_next;
 			return *this;
+		}
+		//后置++,int是占位符，无实际意义，只是用来表明这是后置++。传值返回
+		list_iterator<T, Ref> operator++(int)
+		{
+			list_iterator<T, Ref> temp(*this);//调用默认的拷贝构造，迭代器用浅拷贝没问题，因为只是拷贝指针变量，并不是一块内存空间
+			_node = _node->_next;
+			return temp;
 		}
 
 		list_iterator<T,Ref>& operator--()
@@ -51,7 +58,13 @@ namespace zcq
 			_node = _node->_prev;
 			return *this;
 		}
-
+		//后置--
+		list_iterator<T, Ref> operator--(int)
+		{
+			list_iterator<T, Ref> temp(*this);
+			_node = _node->_prev;
+			return temp;
+		}
 		bool operator!= (const list_iterator<T,Ref>& it)//end()返回的是一个临时对象，必须用const引用接收
 		{
 			return _node != it._node;
