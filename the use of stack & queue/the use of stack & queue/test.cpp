@@ -23,10 +23,6 @@ void Test1()
 	//不能写stack<int> st2 = {1，2，3，4，5} explicit stack (const container_type& ctnr); explicit关键字禁止构造函数隐式类型转换
 	stack<int> st2({ 1,2,3,4,5 });
 	cout << st2.top();
-
-
-
-
 }
 
 
