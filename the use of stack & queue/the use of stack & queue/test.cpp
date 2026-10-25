@@ -41,10 +41,32 @@ void Test2()
 	cout << q2.size() << endl;
 }
 
+//优先队列使用
+void Test3()
+{	//优先队列不能用初始化列表，可以用迭代器初始化
+	vector<int> v = { 6,3,7,21,2,8, };
+	priority_queue<int> q1(v.begin(), v.end());
+	int k = 6;
+	while (k--)
+	{
+		cout << q1.top() << ' ';
+		q1.pop();
+	}
+	cout << endl;
+	priority_queue<int, vector<int>, greater<int>> q2(v.begin(), v.end());
+	int m = 7;
+	q2.push(67);
+	while (m--)
+	{
+		cout << q2.top() <<' ';
+		q2.pop();
+	}
+}
 
 int main()
 {
-	Test1();
+	//Test1();
 	//Test2();
+	Test3();
 	return 0;
 }
