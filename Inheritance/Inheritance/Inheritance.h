@@ -88,41 +88,4 @@ namespace zcq
 		}
 
 	};
-
-//∆’Õ®ºÃ≥–
-	//class Person
-	//{
-	//public:
-	//	void identity()
-	//	{
-	//		cout << "void identity" << endl;
-	//	}
-	//protected:
-	//	string _name ;
-	//	int age ;
-	//};
-
-	//class Student :public Person
-	//{
-	//public:
-	//	void study()
-	//	{
-	//		cout << "void study" << endl;
-	//	}
-
-	//protected:
-	//	string id;
-	//};
-
-	//class Teacher :public Person
-	//{
-	//public:
-	//	void teach()
-	//	{
-	//		cout << "void teach" << endl;
-	//	}
-
-	//protected:
-	//	string major;
-	//};
 }

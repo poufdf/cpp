@@ -2,24 +2,8 @@
 #include"Inheritance.h"
 
 
+
 void Test1()
-{
-	//zcq::Person p;
-	//zcq::Student s;
-	//zcq::Teacher t;
-	//p.identity();
-	//s.identity();
-	//t.identity();
-	//s.study();
-	//t.teach();
-	////派生类对象可以赋值给基类的指针或引用
-	//zcq::Person* ptr = &s;
-	//zcq::Person& pt = s;
-	//p = s;
-
-}
-
-void Test2()
 {
 	zcq::stack<int> s;
 	s.push(1);
@@ -34,7 +18,7 @@ void Test2()
 
  }
 
-void Test3()
+void Test2()
 {
 	//zcq::Person p("张三",15);
 	//zcq::Student s("李四", 18, "123");
@@ -45,10 +29,10 @@ void Test3()
 	s = s1;
 
 }
+
 int main()
 {
 	//Test1();
-	//Test2();
-	Test3();
+	Test2();
 	return 0;
 }
