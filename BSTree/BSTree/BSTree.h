@@ -92,12 +92,37 @@ namespace zcq
 		{
 			Node* cur = _root;
 			Node* parent = nullptr;
-			if (cur->_left == nullptr && cur->_right == nullptr)
+			//特殊处理根
+			if (_root == nullptr)
+			{
+				return false;
+			}
+			if (cur->_left == nullptr && cur->_right == nullptr && cur->_key == key)
 			{
 				delete cur;
+				cur = nullptr;
+				_root = nullptr;
 				return true;
 			}
 
+			if (cur->_left == nullptr && cur->_key == key)
+			{
+				_root = cur->_right;
+				delete cur;
+				cur = nullptr;
+				return true;
+			}
+
+			if (cur->_right == nullptr && cur->_key == key)
+			{
+				_root = cur->_left;
+				delete cur;
+				cur = nullptr;
+				return true;
+
+			}
+
+			//先找到要删除的结点
 			while (key != cur->_key)
 			{
 				if (key > cur->_key)
@@ -110,7 +135,14 @@ namespace zcq
 					parent = cur;
 					cur = cur->_left;
 				}
+
+				if (cur == nullptr)
+				{
+					return false;
+				}
 			}
+
+			//根据左右子树是否为空进行删除
 			if (cur->_left == nullptr)
 			{
 				if (key > parent->_key)
@@ -141,9 +173,10 @@ namespace zcq
 					return true;
 				}
 			}
+			//都不为空
 			else
 			{	
-				
+				//找左子树的最大值和被删除的结点的值交换，然后删除左子树的最右结点。这样既删除了值，又没破坏树的结构。
 				Node* max = cur->_left;
 				parent = cur;
 				while (max->_right)
@@ -161,10 +194,11 @@ namespace zcq
 				}
 				
 				delete max;
+				max = nullptr;
 				return true;
 			
 			}
-			return false;
+			
 		}
 		void Inorder()
 		{	
