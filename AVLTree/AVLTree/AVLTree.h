@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-
+#include<assert.h>
 using namespace std;
 
 namespace zcq
@@ -29,7 +29,8 @@ namespace zcq
 	{
 		typedef AVLTreeNode<K, V> Node;
 	private:
-		void RotateR(Node* parent)
+		//右单旋
+		void RRotate(Node* parent)
 		{
 			Node* subL = parent->_left;
 			Node* subLR = subL->_right;
@@ -60,6 +61,106 @@ namespace zcq
 			}
 			subL->_bf = 0;
 			parent->_bf = 0;
+		}
+		//左单旋
+		void LRotate(Node* parent)
+		{
+			Node* subR = parent->_right;
+			Node* subRL = subR->_left;
+			Node* parentParent = parent->_parent;
+			subR->_left = parent;
+			parent->_parent = subR;
+			parent->_right = subRL;
+			if (subRL)
+			{
+				subRL->_parent = parent;
+			}
+			if (parentParent == nullptr)
+			{
+				_root = subR;
+				subR->_parent = nullptr;
+			}
+			else
+			{
+				if (parent == parentParent->_left)
+				{
+					parentParent->_left = subR;
+				}
+				else
+				{
+					parentParent->_right = subR;
+				}
+				subR->_parent = parentParent;
+			}
+			//更新平衡因子
+			subR->_bf = 0;
+			parent->_bf = 0;
+		}
+		//左右双旋
+		void LRRotate(Node* parent)
+		{
+			Node* subL = parent->_left;
+			Node* subLR = subL->_right;
+			int bf = subLR->_bf;
+			//先左单旋再右单旋
+			LRotate(subL);
+			RRotate(parent);
+			//更新平衡因子
+			if (bf == 0)
+			{
+				subLR->_bf = 0;
+				subL->_bf = 0;
+				parent->_bf = 0;
+			}
+			else if (bf == -1)
+			{
+				subLR->_bf = 0;
+				subL->_bf = 0;
+				parent->_bf = 1;
+			}
+			else if (bf == 1)
+			{
+				subLR->_bf = 0;
+				subL->_bf = -1;
+				parent->_bf = 0;
+			}
+			else
+			{
+				assert(false);
+			}
+		}
+		//右左双旋
+		void RLRotate(Node* parent)
+		{
+			Node* subR = parent->_right;
+			Node* subRL = subR->_left;
+			int bf = subRL->_bf;
+			//先右单旋再左单旋
+			RRotate(subR);
+			LRotate(parent);
+			//更新平衡因子
+			if (bf == 0)
+			{
+				subRL->_bf = 0;
+				subR->_bf = 0;
+				parent->_bf = 0;
+			}
+			else if (bf == -1)
+			{
+				subRL->_bf = 0;
+				subR->_bf = 1;
+				parent ->_bf = 0;
+			}
+			else if (bf == 1)
+			{
+				subRL->_bf = 0;
+				subR->_bf = 0;
+				parent->_bf = -1;
+			}
+			else
+			{
+				assert(false);
+			}
 		}
 
 
@@ -129,11 +230,29 @@ namespace zcq
 				}
 				else if (parent->_bf == -2 || parent->_bf == 2)
 				{
-					//旋转
+					//右单旋
 					if (cur->_bf == -1 && parent->_bf == -2)
 					{
-						RotateR(parent);
+						RRotate(parent);
 					}
+					//左单旋
+					if (cur->_bf == 1 && parent->_bf == 2)
+					{
+						LRotate(parent);
+					}
+					//左右双旋
+					if (cur->_bf == 1 && parent->_bf == -2)
+					{
+						LRRotate(parent);
+					}
+					//右左双旋
+					if (cur->_bf == -1 && parent->_bf == 2)
+					{
+						RLRotate(parent);
+					}
+
+
+					break;
 				}
 			}
 			
