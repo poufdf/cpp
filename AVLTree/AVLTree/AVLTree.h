@@ -162,8 +162,6 @@ namespace zcq
 				assert(false);
 			}
 		}
-
-
 	public:
 		//插入并更新平衡因子
 		bool Insert(const pair<K, V>& kv)
