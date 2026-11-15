@@ -29,6 +29,18 @@ namespace zcq
 	{
 		typedef AVLTreeNode<K, V> Node;
 	private:
+		//中序遍历
+		void _Inorder(Node* root)
+		{
+			if (root == nullptr)
+			{
+				return;
+			}
+			_Inorder(root->_left);
+			cout << root->_kv.first << ' ';
+			_Inorder(root->_right);
+		}
+
 		//右单旋
 		void RRotate(Node* parent)
 		{
@@ -163,6 +175,17 @@ namespace zcq
 			}
 		}
 	public:
+		//中序遍历
+		void Inorder()
+		{
+			_Inorder(_root);
+			cout << endl;
+		}
+
+
+
+
+
 		//插入并更新平衡因子
 		bool Insert(const pair<K, V>& kv)
 		{
