@@ -1,6 +1,9 @@
 #pragma once
 #include<iostream>
 #include<assert.h>
+#include<cstdlib>
+#include<vector>
+#include<ctime>
 using namespace std;
 
 namespace zcq
@@ -40,7 +43,27 @@ namespace zcq
 			cout << root->_kv.first << ' ';
 			_Inorder(root->_right);
 		}
+		//求高度
+		int _Height(Node* root)
+		{
+			if (root == nullptr)
+			{
+				return 0;
+			}
+			int leftHeight = _Height(root->_left);
+			int rightHeight = _Height(root->_right);
+			return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+		}
+		//求个数
+		int _Size(Node* root)
+		{
+			if (root == nullptr)
+			{
+				return 0;
+			}
 
+			return _Size(root->_left) + _Size(root->_right) + 1;
+		}
 		//右单旋
 		void RRotate(Node* parent)
 		{
@@ -174,6 +197,29 @@ namespace zcq
 				assert(false);
 			}
 		}
+		//检测树是否平衡
+		bool _isBalance(Node* root)
+		{
+			if (root == nullptr)
+			{
+				return true;
+			}
+			int leftHeight = _Height(root->_left);
+			int rightHeight = _Height(root->_right);
+			int dif = rightHeight - leftHeight;
+			if (abs(dif) >= 2)
+			{
+				cout << root->_kv.first << "高度差异常" << endl;
+				return false;
+			}
+			if (root->_bf != dif)
+			{
+				cout << root->_kv.first << "平衡因子异常" << endl;
+				return false;
+			}
+
+			return _isBalance(root->_left) && _isBalance(root->_right);
+		}
 	public:
 		//中序遍历
 		void Inorder()
@@ -181,10 +227,16 @@ namespace zcq
 			_Inorder(_root);
 			cout << endl;
 		}
-
-
-
-
+		//求高度
+		int Height()
+		{
+			return _Height(_root);
+		}
+		//求个数
+		int Size()
+		{
+			return _Size(_root);
+		}
 
 		//插入并更新平衡因子
 		bool Insert(const pair<K, V>& kv)
@@ -271,34 +323,41 @@ namespace zcq
 					{
 						RLRotate(parent);
 					}
-
-
 					break;
 				}
 			}
-			
 			return true;
-
-
-
 		}
-
-
-
-
-
+		//检测是否平衡
+		bool isBalance()
+		{
+			return _isBalance(_root);
+		}
+		//查找某一个结点
+		Node* Find(const K& key)
+		{
+			Node* cur = _root;
+			while (cur)
+			{
+				if (key > cur->_kv.first)
+				{
+					cur = cur->_right;
+				}
+				else if (key < cur->_kv.first)
+				{
+					cur = cur->_left;
+				}
+				else
+				{
+					return cur;
+				}
+			}
+			return nullptr;
+		}
 
 	private:
 		Node* _root = nullptr;
 
 	};
-
-
-
-
-
-
-
-
 
 }
