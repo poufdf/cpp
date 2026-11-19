@@ -27,7 +27,8 @@ namespace zcq
 			:_kv(kv)
 			, _left(nullptr)
 			, _right(nullptr)
-			, _parent(nullptr){ }
+			, _parent(nullptr)
+		    ,_col(RED){ }
 
 	};
 
@@ -132,6 +133,36 @@ namespace zcq
 			//先右单旋再左单旋
 			RRotate(subR);
 			LRotate(parent);
+		}
+
+		bool Check(Node* root, int blackNum, int refValue)
+		{
+			//走前序遍历，如果根结点为空说明一条路径走完了
+			if (root == nullptr)
+			{
+				//判断黑色结点个数是否相等
+				if (blackNum != refValue)
+				{
+					cout << "存在一条路径黑色结点个数不相等" << endl;
+					return false;
+				}
+				return true;
+
+			}
+			//判断是否有连续的红色结点
+			if (root->_col == RED && root->_parent->_col == RED)
+			{
+				cout << root->_kv.first << "和其父结点" << root->_parent->_kv.first << "为连续的红色结点" << endl;
+				return false;
+			}
+			//根结点为黑则blackNum++
+			if (root->_col == BLACK)
+			{
+				blackNum++;
+			}
+
+			return Check(root->_left,blackNum,refValue) && Check(root->_right,blackNum,refValue);
+
 		}
 
 
@@ -267,6 +298,60 @@ namespace zcq
 			_root->_col = BLACK;
 			return true;
 		}
+		//查找
+		bool Find(const K& key)
+		{
+			Node* cur = _root;
+			while (cur)
+			{
+				if (key < cur->_kv.first)
+				{
+					cur = cur->_left;
+				}
+				else if (key > cur->_kv.first)
+				{
+					cur = cur->_right;
+				}
+				else
+				{	
+					cout << key << "找到了" << endl;
+					return true;
+				}
+			}
+			cout << key << "没找到" << endl;
+			return false;
+		}
+		//判断是否为红黑树
+		bool isRBTree()
+		{
+			//空树也符合红黑树规则
+			if (_root == nullptr)
+			{
+				return true;
+			}
+
+			if (_root->_col == RED)
+			{
+				return false;
+			}
+
+			//定义变量记录一条路径上黑色结点的个数
+			int refValue = 0;
+			Node* cur = _root;
+			while (cur)
+			{
+				if (cur->_col == BLACK)
+				{
+					refValue++;
+				}
+				cur = cur->_left;
+			}
+
+			return Check(_root, 0, refValue);
+		}
+
+
+
 
 
 	private:

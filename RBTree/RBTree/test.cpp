@@ -11,9 +11,13 @@ void Test1()
 	//{
 	//	T.Insert({ x,x });
 	//}
+	//T.Inorder();
+	//cout << endl;
+	//T.Find(28);
+	//cout << T.isRBTree();
 	zcq::RBTree<int, int> T;
 	srand(time(0));
-	const int N = 20;
+	const int N = 1000;
 	vector<int> v;
 	for (int i = 0; i < N; i++)
 	{
@@ -23,8 +27,11 @@ void Test1()
 	{
 		T.Insert({ x,x });
 	}
+	int temp = v[10];
 	T.Inorder();
-
+	cout << endl;
+	T.Find(temp);
+	cout << T.isRBTree();
 
 }
 
