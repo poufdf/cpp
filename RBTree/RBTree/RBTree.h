@@ -256,7 +256,6 @@ namespace zcq
 						}											
 					}
 					
-
 				}
 				//pÎªgÓÒº¢×Ó
 				else                                        //    g(b)                      g(r)
@@ -349,11 +348,6 @@ namespace zcq
 
 			return Check(_root, 0, refValue);
 		}
-
-
-
-
-
 	private:
 		Node* _root = nullptr;
 	};
