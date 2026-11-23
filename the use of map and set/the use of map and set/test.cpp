@@ -32,15 +32,39 @@ void Test1()
 		cout << x << ' ';
 	}
 	cout << endl;
+}
+
+void Test2()
+{
+	map<string, int> m = { {"Æ»¹û",1},{"Î÷¹Ï",1},{"Ïã½¶",1} };
+	map<string, int>::iterator it = m.begin();
+	//while (it != m.end())
+	//{
+	//	cout << it->first << ':' << it->second << endl;
+	//	it++;
+	//}
+	
+	while (it != m.end())
+	{
+		if (it->first == "Æ»¹û")
+		{
+			it->second++;
+		}
+		cout << it->first << ':' << it->second << endl;
+		it++;
+
+	}
+
+
 
 
 }
 
 
-
 int main()
 {
-	Test1();
+	//Test1();
+	Test2();
 
 	return 0;
 }
